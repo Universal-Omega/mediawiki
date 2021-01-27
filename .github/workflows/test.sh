@@ -11,7 +11,7 @@ cd mediawiki
 
 wget https://github.com/miraheze/mw-config/archive/master.tar.gz -nv
 
-tar -zxf mw-config-master.tar.gz
+tar -zxf master.tar.gz
 mv mw-config-master config
 
 wget https://github.com/miraheze/mediawiki/archive/$MW_BRANCH.tar.gz -nv
