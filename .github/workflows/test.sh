@@ -1,9 +1,5 @@
 #! /bin/bash
 
-MW_BRANCH=$1
-EXTENSION_NAME=$2
-SKIN_NAME=$3
-
 mkdir -p srv/mediawiki
 cd srv/mediawiki
 
@@ -61,6 +57,4 @@ echo '$wgShowExceptionDetails = true;' >> LocalSettings.php
 echo '$wgShowDBErrorBacktrace = true;' >> LocalSettings.php
 echo '$wgDevelopmentWarnings = true;' >> LocalSettings.php
 
-# echo 'wfLoadExtension( "'$EXTENSION_NAME'" );' >> LocalSettings.php
-# echo 'wfLoadSkin( "'$SKIN_NAME'" );' >> LocalSettings.php
 tail -n5 LocalSettings.php
