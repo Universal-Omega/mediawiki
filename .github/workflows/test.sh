@@ -8,7 +8,7 @@ composer self-update --1
 
 /usr/bin/git clone https://github.com/miraheze/mw-config.git config --depth=1
 
-/usr/bin/git clone https://github.com/miraheze/mediawiki.git w --depth=1
+/usr/bin/git clone https://github.com/miraheze/mediawiki.git w --recurse-submodules --depth=1
 
 cd w
 
@@ -46,8 +46,6 @@ rm LocalSettings.php
 cd ..
 mv config/LocalSettings.php w/LocalSettings.php
 cd w
-
-#echo -e "<?php set_include_path( get_include_path() . PATH_SEPARATOR . '/home/runner/work/mediawiki/mediawiki' ); ?>\n$(cat LocalSettings.php)" > LocalSettings.php
 
 sed -i -e 's/\/srv\//\/home\/runner\/work\/mediawiki\/mediawiki\/srv\//g' LocalSettings.php
 
