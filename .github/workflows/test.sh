@@ -8,7 +8,7 @@ cd srv/mediawiki
 
 /usr/bin/git clone https://github.com/miraheze/mw-config.git config --depth=1
 
-/usr/bin/git clone https://github.com/miraheze/mediawiki.git w --depth=1
+/usr/bin/git clone https://github.com/miraheze/mediawiki.git w --recurse-submodules --depth=1
 
 cd w
 
@@ -48,7 +48,7 @@ cd ..
 mv config/LocalSettings.php w/LocalSettings.php
 cd w
 
-echo -e "<?php set_include_path('/home/runner/work/mediawiki/mediawiki'); ?>\n$(cat LocalSettings.php)" > LocalSettings.php
+echo -e "<?php set_include_path('/home/runner/work/mediawiki/mediawiki:/home/runner/work/mediawiki/mediawiki/srv/mediawiki/w/vendor/pear/console_getopt:/home/runner/work/mediawiki/mediawiki/srv/mediawiki/w/vendor/pear/mail:/home/runner/work/mediawiki/mediawiki/srv/mediawiki/w/vendor/pear/mail_mime:/home/runner/work/mediawiki/mediawiki/srv/mediawiki/w/vendor/pear/net_smtp:/home/runner/work/mediawiki/mediawiki/srv/mediawiki/w/vendor/pear/net_socket:/home/runner/work/mediawiki/mediawiki/srv/mediawiki/w/vendor/pear/pear-core-minimal/src:/home/runner/work/mediawiki/mediawiki/srv/mediawiki/w/vendor/pear/pear_exception:.:/usr/share/php'); ?>\n$(cat LocalSettings.php)" > LocalSettings.php
 
 echo 'error_reporting(E_ALL| E_STRICT);' >> LocalSettings.php
 echo 'ini_set("display_errors", 1);' >> LocalSettings.php
