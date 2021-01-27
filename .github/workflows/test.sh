@@ -2,7 +2,7 @@
 
 mkdir -p srv/mediawiki
 
-sudo mount /home/runner/work/mediawiki/mediawiki/srv /srv
+ln -s /home/runner/work/mediawiki/mediawiki/srv /srv
 
 cd srv/mediawiki
 
