@@ -3,15 +3,7 @@
 mkdir -p srv/mediawiki
 cd srv/mediawiki
 
-wget https://github.com/miraheze/mw-config/archive/master.tar.gz -nv
-
-tar -zxf master.tar.gz
-mv mw-config-master config
-
-#wget https://github.com/miraheze/mediawiki/archive/REL1_35.tar.gz -nv
-
-#tar -zxf REL1_35.tar.gz
-#mv mediawiki-REL1_35 w
+/usr/bin/git clone https://github.com/miraheze/mw-config.git config --depth=1
 
 /usr/bin/git clone https://github.com/miraheze/mediawiki.git w --depth=1
 
