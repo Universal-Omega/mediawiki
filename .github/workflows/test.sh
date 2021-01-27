@@ -2,7 +2,7 @@
 
 mkdir -p srv/mediawiki
 
-ln -s /home/runner/work/mediawiki/mediawiki/srv /srv
+ln -s /srv /home/runner/work/mediawiki/mediawiki/srv
 
 cd srv/mediawiki
 
