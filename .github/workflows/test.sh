@@ -49,7 +49,7 @@ cd w
 
 #echo -e "<?php set_include_path( get_include_path() . PATH_SEPARATOR . '/home/runner/work/mediawiki/mediawiki' ); ?>\n$(cat LocalSettings.php)" > LocalSettings.php
 
-sed -i -e 's//srv//home/runner/work/mediawiki/mediawiki//g' LocalSettings.php
+sed -i -e 's/\/srv\/\/home\/runner\/work\/mediawiki\/mediawiki\/srv\//g' LocalSettings.php
 
 echo 'error_reporting(E_ALL| E_STRICT);' >> LocalSettings.php
 echo 'ini_set("display_errors", 1);' >> LocalSettings.php
