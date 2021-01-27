@@ -19,7 +19,8 @@ mv mediawiki-REL1_35 w
 
 cd w
 
-composer install --1
+mv .github/workflows/composer.phar composer.phar
+composer.phar install
 php maintenance/install.php --dbtype sqlite --dbuser root --dbname mw --dbpath $(pwd) --pass AdminPassword WikiName AdminUser
 
 cat <<EOT >> composer.local.json
