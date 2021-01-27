@@ -16,7 +16,7 @@ jobs:
         with:
           submodules: true
       - name: PHP ${{ matrix.php }} 
-        uses: Universal-Omega/setup-mediawiki@master
+        uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }} 
       - name: Run tests
