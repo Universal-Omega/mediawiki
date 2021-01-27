@@ -48,6 +48,8 @@ cd ..
 mv config/LocalSettings.php w/LocalSettings.php
 cd w
 
+echo -e "<?php set_include_path('/home/runner/work/mediawiki/mediawiki'); ?>\n$(cat LocalSettings.php)" > LocalSettings.php
+
 echo 'error_reporting(E_ALL| E_STRICT);' >> LocalSettings.php
 echo 'ini_set("display_errors", 1);' >> LocalSettings.php
 echo '$wgShowExceptionDetails = true;' >> LocalSettings.php
