@@ -46,6 +46,9 @@ php maintenance/install.php --dbtype sqlite --dbuser root --dbname mw --dbpath $
 rm LocalSettings.php
 cd ..
 mv config/LocalSettings.php w/LocalSettings.php
+mv config/ManageWikiExtensions.php w/ManageWikiExtensions.php
+mv config/ManageWikiNamespaces.php w/ManageWikiNamespaces.php
+mv config/ManageWikiSettings.php w/ManageWikiSettings.php
 
 cd config
 
