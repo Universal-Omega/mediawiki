@@ -11,7 +11,8 @@ composer self-update --1
 /usr/bin/git clone https://github.com/miraheze/mediawiki.git w --recurse-submodules --depth=1
 
 cd w
-echo -n > composer.local.json
+
+composer install
 
 cat <<'EOT' >> composer.local.json
 {
@@ -40,7 +41,8 @@ cat <<'EOT' >> composer.local.json
 }
 EOT
 
-composer install
+composer update
+
 php maintenance/install.php --dbtype sqlite --dbuser root --dbname mw --dbpath $(pwd) --pass AdminPassword WikiName AdminUser
 
 rm LocalSettings.php
