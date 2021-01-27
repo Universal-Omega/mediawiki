@@ -10,11 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php: ['7.3', '8.0']
+        php: ['7.3']
     steps:
       - uses: actions/checkout@v2
         with:
-          submodules: true
+          submodules: false
       - name: PHP ${{ matrix.php }} 
         uses: shivammathur/setup-php@v2
         with:
