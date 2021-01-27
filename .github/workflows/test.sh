@@ -5,7 +5,7 @@ cd srv/mediawiki
 
 /usr/bin/git clone https://github.com/miraheze/mw-config.git config --depth=1
 
-/usr/bin/git clone https://github.com/miraheze/mediawiki.git w --recurse-submodules --depth=1
+/usr/bin/git clone https://github.com/miraheze/mediawiki.git w --depth=1
 
 cd w
 
@@ -52,3 +52,5 @@ echo '$wgShowDBErrorBacktrace = true;' >> LocalSettings.php
 echo '$wgDevelopmentWarnings = true;' >> LocalSettings.php
 
 tail -n5 LocalSettings.php
+
+php maintenance/update.php
