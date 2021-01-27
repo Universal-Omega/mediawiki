@@ -4,20 +4,18 @@ MW_BRANCH=$1
 EXTENSION_NAME=$2
 SKIN_NAME=$3
 
-mkdir srv
-cd srv
-mkdir mediawiki
-cd mediawiki
+mkdir -p srv/mediawiki
+cd srv/mediawiki
 
 wget https://github.com/miraheze/mw-config/archive/master.tar.gz -nv
 
 tar -zxf master.tar.gz
 mv mw-config-master config
 
-wget https://github.com/miraheze/mediawiki/archive/$MW_BRANCH.tar.gz -nv
+wget https://github.com/miraheze/mediawiki/archive/REL1_35.tar.gz -nv
 
-tar -zxf $MW_BRANCH.tar.gz
-mv mediawiki-$MW_BRANCH w
+tar -zxf REL1_35.tar.gz
+mv mediawiki-REL1_35 w
 
 cd w
 
