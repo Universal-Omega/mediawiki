@@ -11,6 +11,7 @@ composer self-update --1
 /usr/bin/git clone https://github.com/miraheze/mediawiki.git w --recurse-submodules --depth=1
 
 cd w
+echo -n > composer.local.json
 
 cat <<'EOT' >> composer.local.json
 {
@@ -45,6 +46,14 @@ php maintenance/install.php --dbtype sqlite --dbuser root --dbname mw --dbpath $
 rm LocalSettings.php
 cd ..
 mv config/LocalSettings.php w/LocalSettings.php
+
+cd config
+
+echo -n > PrivateSettings.php
+echo -n > ExtensionMessageFiles.php
+
+cd ..
+
 cd w
 
 sed -i -e 's/\/srv\//\/home\/runner\/work\/mediawiki\/mediawiki\/srv\//g' LocalSettings.php
