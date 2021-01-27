@@ -75,8 +75,8 @@ echo '$wgDevelopmentWarnings = true;' >> LocalSettings.php
 
 tail -n5 LocalSettings.php
 
-php maintenance/sql.php extensions/CreateWiki/sql/cw_comments.sql
-php maintenance/sql.php extensions/CreateWiki/sql/cw_requests.sql
-php maintenance/sql.php extensions/CreateWiki/sql/cw_wikis.sql
+php maintenance/sqlite.php extensions/CreateWiki/sql/cw_comments.sql
+php maintenance/sqlite.php extensions/CreateWiki/sql/cw_requests.sql
+php maintenance/sqlite.php extensions/CreateWiki/sql/cw_wikis.sql
 
 php maintenance/update.php
