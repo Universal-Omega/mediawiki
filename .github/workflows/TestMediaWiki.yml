@@ -17,3 +17,8 @@ jobs:
           submodules: true
       - name: PHP ${{ matrix.php }} 
         uses: Universal-Omega/setup-mediawiki@master
+        with:
+          php-version: ${{ matrix.php }} 
+      - name: Run tests
+        run: |
+          bash .github/workflows/test.sh
