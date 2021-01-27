@@ -2,13 +2,13 @@
 
 mkdir -p srv/mediawiki
 
-ln -s /srv /home/runner/work/mediawiki/mediawiki/srv
+ln -sf /srv /home/runner/work/mediawiki/mediawiki/srv
 
 cd srv/mediawiki
 
 /usr/bin/git clone https://github.com/miraheze/mw-config.git config --depth=1
 
-/usr/bin/git clone https://github.com/miraheze/mediawiki.git w --recurse-submodules --depth=1
+/usr/bin/git clone https://github.com/miraheze/mediawiki.git w --depth=1
 
 cd w
 
