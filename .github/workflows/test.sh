@@ -45,8 +45,12 @@ composer update
 
 php maintenance/install.php --dbtype sqlite --dbuser root --dbname mw --dbpath $(pwd) --pass AdminPassword WikiName AdminUser
 
-rm LocalSettings.php
+
 cd ..
+
+rm config/Database.php
+mv w/LocalSettings.php config/Database.php
+
 mv config/LocalSettings.php w/LocalSettings.php
 mv config/ManageWikiExtensions.php w/ManageWikiExtensions.php
 mv config/ManageWikiNamespaces.php w/ManageWikiNamespaces.php
