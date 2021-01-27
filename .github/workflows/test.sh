@@ -1,4 +1,5 @@
 #! /bin/bash
+mount /home/runner/work/mediawiki/mediawiki/srv /srv
 
 mkdir -p srv/mediawiki
 cd srv/mediawiki
