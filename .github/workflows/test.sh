@@ -5,7 +5,7 @@ cd srv/mediawiki
 
 /usr/bin/git clone https://github.com/miraheze/mw-config.git config --depth=1
 
-/usr/bin/git clone https://github.com/miraheze/mediawiki.git w --recurse-submodules --depth=1
+/usr/bin/git clone https://github.com/miraheze/mediawiki.git w --depth=1
 
 cd w
 
@@ -13,7 +13,7 @@ composer self-update --1
 composer install
 php maintenance/install.php --dbtype sqlite --dbuser root --dbname mw --dbpath $(pwd) --pass AdminPassword WikiName AdminUser
 
-cat <<EOT >> composer.local.json
+cat <<'EOT' >> composer.local.json
 {
 	"extra": {
 		"merge-plugin": {
