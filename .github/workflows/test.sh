@@ -1,7 +1,9 @@
 #! /bin/bash
-sudo mount /home/runner/work/mediawiki/mediawiki/srv /srv
 
 mkdir -p srv/mediawiki
+
+sudo mount /home/runner/work/mediawiki/mediawiki/srv /srv
+
 cd srv/mediawiki
 
 /usr/bin/git clone https://github.com/miraheze/mw-config.git config --depth=1
