@@ -1,0 +1,19 @@
+name: Continuous integration
+on:
+  create:
+  push:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: ['7.3', '8.0']
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+      - name: PHP ${{ matrix.php }} 
+        uses: Universal-Omega/setup-mediawiki@master
