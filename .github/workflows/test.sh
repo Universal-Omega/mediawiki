@@ -41,9 +41,7 @@ cat <<'EOT' >> composer.local.json
 }
 EOT
 
-composer update
-
-php maintenance/install.php --dbtype=mysql --dbuser=root --pass=AdminPassword WikiName AdminUser
+php maintenance/install.php --dbtype=mysql --dbname=mysql --dbserver=127.0.0.1 --dbuser=root --pass=AdminPassword WikiName AdminUser
 
 
 cd ..
