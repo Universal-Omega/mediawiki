@@ -17,10 +17,8 @@ jobs:
       mysql:
         image: mariadb:latest
         env:
-          MYSQL_USER: root
           MYSQL_PASSWORD: root
           MYSQL_DATABASE: mysql
-          MYSQL_ROOT_PASSWORD: root
         ports:
           - 3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
@@ -37,7 +35,7 @@ jobs:
           php-version: ${{ matrix.php }} 
       - name: Run tests
         run: |
-          bash -x .github/workflows/test.sh mysql root root
+          bash -x .github/workflows/test.sh
         env:
           REDIS_PORT: ${{ job.services.redis.ports['6379'] }}
           DB_PORT: ${{ job.services.mysql.ports[3306] }}
