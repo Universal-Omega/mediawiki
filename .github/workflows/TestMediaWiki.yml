@@ -35,7 +35,7 @@ jobs:
           php-version: ${{ matrix.php }} 
       - name: Run tests
         run: |
-          bash -x .github/workflows/test.sh
+          bash -x .github/workflows/test.sh mysql root root
         env:
           REDIS_PORT: ${{ job.services.redis.ports['6379'] }}
           DB_PORT: ${{ job.services.mysql.ports[3306] }}
