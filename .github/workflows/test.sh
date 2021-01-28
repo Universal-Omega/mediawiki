@@ -43,7 +43,7 @@ EOT
 
 composer update
 
-php maintenance/install.php --dbtype=sqlite --dbuser=root --dbname=mw --dbpath=/home/runner/work/mediawiki/mediawiki/srv/mediawiki/w/data --pass=AdminPassword WikiName AdminUser
+php maintenance/install.php --dbtype=mysql --dbuser=root --pass=AdminPassword WikiName AdminUser
 
 
 cd ..
@@ -79,9 +79,10 @@ tail -n5 LocalSettings.php
 #php maintenance/sqlite.php extensions/CreateWiki/sql/cw_requests.sql
 #php maintenance/sqlite.php extensions/CreateWiki/sql/cw_wikis.sql
 
-cd data
-sqlite3 mw.db ".read /home/runner/work/mediawiki/mediawiki/srv/mediawiki/w/extensions/CreateWiki/sql/cw_wikis.sql"
+mysql -h "127.0.0.1" -u "root" "mediawiki" < "extensions/CreateWiki/sql/cw_wikis.sql"
+#cd data
+#sqlite3 mw.db ".read /home/runner/work/mediawiki/mediawiki/srv/mediawiki/w/extensions/CreateWiki/sql/cw_wikis.sql"
 
-cd ..
+#cd ..
 
 php maintenance/update.php
