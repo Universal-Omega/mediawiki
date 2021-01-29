@@ -81,11 +81,13 @@ tail -n5 LocalSettings.php
 #php maintenance/sqlite.php extensions/CreateWiki/sql/cw_wikis.sql
 
 #mysql -h "localhost" -u "root" "mediawiki" < "extensions/CreateWiki/sql/cw_wikis.sql"
-cd data
+#cd data
+ls
 sqlite3 .databases
+sqlite3 .database
 sqlite3 .open mediawiki.db
 sqlite3 mediawiki.db ".read /home/runner/work/mediawiki/mediawiki/srv/mediawiki/w/extensions/CreateWiki/sql/cw_wikis.sql"
 
-cd ..
+#cd ..
 
 php maintenance/update.php
