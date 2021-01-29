@@ -86,8 +86,8 @@ ls
 cd ..
 sqlite3 .databases
 sqlite3 .database
-sqlite3 .open mediawiki.db
-sqlite3 mediawiki.db ".read /home/runner/work/mediawiki/mediawiki/srv/mediawiki/w/extensions/CreateWiki/sql/cw_wikis.sql"
+sqlite3 .open mediawiki.sqlite
+sqlite3 mediawiki.sqlite ".read /home/runner/work/mediawiki/mediawiki/srv/mediawiki/w/extensions/CreateWiki/sql/cw_wikis.sql"
 
 #cd ..
 
