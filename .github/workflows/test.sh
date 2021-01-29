@@ -8,7 +8,7 @@ composer self-update --1
 
 /usr/bin/git clone https://github.com/miraheze/mw-config.git config --depth=1
 
-/usr/bin/git clone https://github.com/miraheze/mediawiki.git w --depth=1
+/usr/bin/git clone https://github.com/miraheze/mediawiki.git w --recurse-submodules --depth=1
 
 cd w
 
@@ -83,15 +83,7 @@ tail -n5 LocalSettings.php
 #mysql -h "localhost" -u "root" "mediawiki" < "extensions/CreateWiki/sql/cw_wikis.sql"
 cd data
 ls
-sqlite3 .databases
-sqlite3 .database
-sqlite3 .open mediawiki.sqlite
-cd ..
-sqlite3 .databases
-sqlite3 .database
-sqlite3 .open mediawiki.sqlite
 sqlite3 mediawiki.sqlite ".read /home/runner/work/mediawiki/mediawiki/srv/mediawiki/w/extensions/CreateWiki/sql/cw_wikis.sql"
-
-#cd ..
+cd ..
 
 php maintenance/update.php
