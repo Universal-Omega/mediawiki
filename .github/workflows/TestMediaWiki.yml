@@ -17,8 +17,8 @@ jobs:
       mysql:
         image: mariadb:latest
         env:
-          MYSQL_PASSWORD: root
-          MYSQL_DATABASE: mysql
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          MYSQL_DATABASE: mediawiki
         ports:
           - 3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
