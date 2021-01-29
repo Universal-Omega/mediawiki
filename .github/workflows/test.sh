@@ -83,6 +83,9 @@ tail -n5 LocalSettings.php
 #mysql -h "localhost" -u "root" "mediawiki" < "extensions/CreateWiki/sql/cw_wikis.sql"
 cd data
 ls
+sqlite3 .databases
+sqlite3 .database
+sqlite3 .open mediawiki.sqlite
 cd ..
 sqlite3 .databases
 sqlite3 .database
