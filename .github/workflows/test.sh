@@ -8,7 +8,7 @@ composer self-update --1
 
 /usr/bin/git clone https://github.com/miraheze/mw-config.git config --depth=1
 
-/usr/bin/git clone https://github.com/miraheze/mediawiki.git w --depth=1
+/usr/bin/git clone https://github.com/miraheze/mediawiki.git w --recurse-submodules --depth=1
 
 cd w
 
