@@ -47,6 +47,8 @@ chmod a+w data
 #php maintenance/install.php --dbtype=mysql --dbname=mysql --dbuser=root --dbpass=root --pass=AdminPassword WikiName AdminUser
 php maintenance/install.php --dbtype=sqlite --dbuser=root --dbname=mediawiki --dbpath=/home/runner/work/mediawiki/mediawiki/srv/mediawiki/w/data --pass=AdminPassword WikiName AdminUser
 
+sqlite3 /home/runner/work/mediawiki/mediawiki/srv/mediawiki/w/data/mediawiki.sqlite
+
 cd ..
 
 rm config/Database.php
