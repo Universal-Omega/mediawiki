@@ -63,6 +63,10 @@ cd w
 
 sed -i -e 's/\/srv\//\/home\/runner\/work\/mediawiki\/mediawiki\/srv\//g' LocalSettings.php
 
+sed -i -e 's/https\:\/\//http\:\/\//g' extensions/CreateWiki/includes/WikiInitialise.php
+
+sed -i -e 's/\. substr\( \$db, 0, \-strlen\( \$suffix \) \) \. \'\.\'/ /g' extensions/CreateWiki/includes/WikiInitialise.php
+
 echo 'error_reporting(E_ALL| E_STRICT);' >> LocalSettings.php
 echo 'ini_set("display_errors", 1);' >> LocalSettings.php
 echo '$wgShowExceptionDetails = true;' >> LocalSettings.php
