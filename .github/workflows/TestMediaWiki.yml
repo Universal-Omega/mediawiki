@@ -26,10 +26,16 @@ jobs:
       matrix:
         php: ['7.3']
     steps:
-      - uses: actions/checkout@v2
+      - name: Clone MediaWiki
+        uses: actions/checkout@v2
         with:
           submodules: true
           path: srv/mediawiki/w
+      - name: Clone Config
+        uses: action/checkout@v2
+        with:
+          repository: miraheze/mw-config
+          path: srv/mediawiki/config
       - name: PHP ${{ matrix.php }} 
         uses: shivammathur/setup-php@v2
         with:
