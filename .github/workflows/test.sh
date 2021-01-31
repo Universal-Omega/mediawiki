@@ -81,6 +81,8 @@ tail -n5 LocalSettings.php
 #php maintenance/sqlite.php extensions/CreateWiki/sql/cw_requests.sql
 #php maintenance/sqlite.php extensions/CreateWiki/sql/cw_wikis.sql
 
+sed -i '1i <?php require_once( "/home/runner/work/mediawiki/mediawiki/srv/mediawiki/config/Database.php" ); ?>' LocalSettings.php
+
 mysql -u "root" -proot "mediawiki" < "extensions/CreateWiki/sql/cw_wikis.sql"
 cd data
 ls
