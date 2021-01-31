@@ -39,8 +39,12 @@ EOT
 
 sudo /etc/init.d/mysql start
 
-mysql -u root -proot -e "CREATE DATABASE mediawiki;"
-php maintenance/install.php --dbtype=mysql --dbname=mediawiki --dbuser=root --dbpass=root --pass=AdminPassword WikiName AdminUser
+mysql -u root -proot -e "CREATE DATABASE `mediawiki`;"
+#mysql -u root -proot -e "CREATE DATABASE `mhglobal`;"
+#mysql -u root -proot -e "CREATE DATABASE `metawiki`;"
+#mysql -u root -proot -e "CREATE DATABASE `loginwiki`;"
+
+php maintenance/install.php --dbtype=mysql --dbname=mediawiki --dbuser=root --dbpass=root --server=http://localhost --scriptpath=/w --pass=AdminPassword WikiName AdminUser
 
 cd ..
 
@@ -54,8 +58,6 @@ mv config/ManageWikiSettings.php w/ManageWikiSettings.php
 cd config
 
 echo -n "" > Database.php
-
-echo -n "" > ExtensionMessageFiles.php
 
 cd ..
 
@@ -88,5 +90,9 @@ echo '$wgDevelopmentWarnings = true;' >> LocalSettings.php
 tail -n5 LocalSettings.php
 
 mysql -u "root" -proot "mediawiki" < "extensions/CreateWiki/sql/cw_wikis.sql"
+
+php maintenance/mergeMessageFileList.php --output=/home/runner/work/mediawiki/mediawiki/srv/mediawiki/config/ExtensionMessageFiles.php --wiki=mediawiki
+
+php maintenance/rebuildLocalisationCache.php --wiki=mediawiki
 
 php maintenance/update.php --wiki=mediawiki
