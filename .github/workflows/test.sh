@@ -42,6 +42,7 @@ chmod a+w data
 
 sudo /etc/init.d/mysql start
 
+mysql -u root -proot -e "CREATE DATABASE mediawiki;"
 php maintenance/install.php --dbtype=mysql --dbname=mediawiki --dbuser=root --dbpass=root --pass=AdminPassword WikiName AdminUser
 #php maintenance/install.php --dbtype=sqlite --dbuser=root --dbname=mediawiki --dbpath=/home/runner/work/mediawiki/mediawiki/srv/mediawiki/w/data --pass=AdminPassword WikiName AdminUser
 
@@ -80,7 +81,7 @@ tail -n5 LocalSettings.php
 #php maintenance/sqlite.php extensions/CreateWiki/sql/cw_requests.sql
 #php maintenance/sqlite.php extensions/CreateWiki/sql/cw_wikis.sql
 
-mysql -u "root" "mediawiki" < "extensions/CreateWiki/sql/cw_wikis.sql"
+mysql -u "root" -proot "mediawiki" < "extensions/CreateWiki/sql/cw_wikis.sql"
 cd data
 ls
 #sqlite3 mediawiki.sqlite ".read /home/runner/work/mediawiki/mediawiki/srv/mediawiki/w/extensions/CreateWiki/sql/cw_wikis.sql"
