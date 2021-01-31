@@ -37,21 +37,14 @@ cat <<'EOT' >> composer.local.json
 }
 EOT
 
-mkdir data
-chmod a+w data
-
 sudo /etc/init.d/mysql start
 
 mysql -u root -proot -e "CREATE DATABASE mediawiki;"
 php maintenance/install.php --dbtype=mysql --dbname=mediawiki --dbuser=root --dbpass=root --pass=AdminPassword WikiName AdminUser
-#php maintenance/install.php --dbtype=sqlite --dbuser=root --dbname=mediawiki --dbpath=/home/runner/work/mediawiki/mediawiki/srv/mediawiki/w/data --pass=AdminPassword WikiName AdminUser
-
-#sqlite3 /home/runner/work/mediawiki/mediawiki/srv/mediawiki/w/data/mediawiki.sqlite
 
 cd ..
 
-rm config/Database.php
-mv w/LocalSettings.php config/Database.php
+mv w/LocalSettings.php config/PrivateSettings.php
 
 mv config/LocalSettings.php w/LocalSettings.php
 mv config/ManageWikiExtensions.php w/ManageWikiExtensions.php
@@ -60,8 +53,9 @@ mv config/ManageWikiSettings.php w/ManageWikiSettings.php
 
 cd config
 
-echo -n > PrivateSettings.php
-echo -n > ExtensionMessageFiles.php
+echo -n "" > Database.php
+
+echo -n "" > ExtensionMessageFiles.php
 
 cd ..
 
@@ -77,16 +71,6 @@ echo '$wgDevelopmentWarnings = true;' >> LocalSettings.php
 
 tail -n5 LocalSettings.php
 
-#php maintenance/sqlite.php extensions/CreateWiki/sql/cw_comments.sql
-#php maintenance/sqlite.php extensions/CreateWiki/sql/cw_requests.sql
-#php maintenance/sqlite.php extensions/CreateWiki/sql/cw_wikis.sql
-
-sed -i '1i <?php require_once( "/home/runner/work/mediawiki/mediawiki/srv/mediawiki/config/Database.php" ); ?>' LocalSettings.php
-
 mysql -u "root" -proot "mediawiki" < "extensions/CreateWiki/sql/cw_wikis.sql"
-cd data
-ls
-#sqlite3 mediawiki.sqlite ".read /home/runner/work/mediawiki/mediawiki/srv/mediawiki/w/extensions/CreateWiki/sql/cw_wikis.sql"
-cd ..
 
 php maintenance/update.php
