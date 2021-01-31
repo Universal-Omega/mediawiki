@@ -63,9 +63,11 @@ cd w
 
 sed -i -e 's/\/srv\//\/home\/runner\/work\/mediawiki\/mediawiki\/srv\//g' LocalSettings.php
 
-sed -i 's/https\:\/\/miraheze\.org/http://localhost/g' LocalSettings.php
+sed -i -e 's/https\:\/\/miraheze\.org/http://localhost/g' LocalSettings.php
 
-sed -i "s/'miraheze\.org'/'localhost'/g" LocalSettings.php
+sed -i -e "s/'miraheze\.org'/'localhost'/g" LocalSettings.php
+
+sed -i -e 's/undefined/localhost/g' extensions/CreateWiki/includes/WikiInitialise.php
 
 sed -i -e 's/https\:\/\//http\:\/\//g' extensions/CreateWiki/includes/WikiInitialise.php
 
