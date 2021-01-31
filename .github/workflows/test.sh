@@ -63,6 +63,8 @@ cd ..
 
 cd w
 
+echo  -n "INSERT INTO cw_wikis SET wiki_dbname = 'mediawiki', wiki_sitename = 'WikiName', wiki_language = 'en', wiki_private = 0, wiki_creation = 20150802185000, wiki_url = 'http://localhost', wiki_closed = 0, wiki_inactive = 0, wiki_inactive_exempt = 1, wiki_deleted = 0, wiki_locked = 0, wiki_dbcluster = 'c2', wiki_category = 'uncategorised', wiki_extensions = ''" > extensions/CreateWiki/sql/cw_wikis_insert.sql
+
 sed -i -e 's/\/srv\//\/home\/runner\/work\/mediawiki\/mediawiki\/srv\//g' LocalSettings.php
 
 sed -i -e "s/'mhglobal'/'mediawiki'/g" LocalSettings.php
@@ -90,6 +92,9 @@ echo '$wgDevelopmentWarnings = true;' >> LocalSettings.php
 tail -n5 LocalSettings.php
 
 mysql -u "root" -proot "mediawiki" < "extensions/CreateWiki/sql/cw_wikis.sql"
+
+mysql -u "root" -proot "mediawiki" < "extensions/CreateWiki/sql/cw_wikis_insert.sql"
+
 
 php maintenance/mergeMessageFileList.php --output=/home/runner/work/mediawiki/mediawiki/srv/mediawiki/config/ExtensionMessageFiles.php --wiki=mediawiki
 
