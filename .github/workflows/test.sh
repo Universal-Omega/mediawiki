@@ -94,9 +94,9 @@ mysql -u "root" -proot "mediawiki" -D mediawiki < "extensions/CreateWiki/sql/cw_
 
 mysql -u "root" -proot "mediawiki" -D mediawiki -e "INSERT INTO cw_wikis SET wiki_dbname = 'mediawiki', wiki_sitename = 'WikiName', wiki_language = 'en', wiki_private = 0, wiki_creation = 20150802185000, wiki_url = 'http://localhost', wiki_closed = 0, wiki_inactive = 0, wiki_inactive_exempt = 1, wiki_deleted = 0, wiki_locked = 0, wiki_dbcluster = 'c2', wiki_category = 'uncategorised', wiki_extensions = '';"
 
+# Re-enable later after update.php works
+# php maintenance/mergeMessageFileList.php --output=/home/runner/work/mediawiki/mediawiki/srv/mediawiki/config/ExtensionMessageFiles.php --wiki=mediawiki
 
-php maintenance/mergeMessageFileList.php --output=/home/runner/work/mediawiki/mediawiki/srv/mediawiki/config/ExtensionMessageFiles.php --wiki=mediawiki
+# php maintenance/rebuildLocalisationCache.php --wiki=mediawiki
 
-php maintenance/rebuildLocalisationCache.php --wiki=mediawiki
-
-php maintenance/update.php --wiki=mediawiki
+php maintenance/update.php
