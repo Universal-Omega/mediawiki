@@ -26,16 +26,23 @@ jobs:
       matrix:
         php: ['7.3']
     steps:
-      - uses: actions/checkout@v2
+      - name: Clone MediaWiki
+        uses: actions/checkout@v2
         with:
-          submodules: false
+          submodules: true
+          path: srv/mediawiki/w
+      - name: Clone Config
+        uses: actions/checkout@v2
+        with:
+          repository: miraheze/mw-config
+          path: srv/mediawiki/config
       - name: PHP ${{ matrix.php }} 
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }} 
       - name: Run tests
         run: |
-          bash -x .github/workflows/test.sh
+          bash -x srv/mediawiki/w/.github/workflows/test.sh
         env:
           REDIS_PORT: ${{ job.services.redis.ports['6379'] }}
           DB_PORT: ${{ job.services.mysql.ports[3306] }}

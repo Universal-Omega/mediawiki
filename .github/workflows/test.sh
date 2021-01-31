@@ -6,10 +6,6 @@ cd srv/mediawiki
 
 composer self-update --1
 
-/usr/bin/git clone https://github.com/miraheze/mw-config.git config --depth=1
-
-/usr/bin/git clone https://github.com/miraheze/mediawiki.git w --recurse-submodules --depth=1
-
 cd w
 
 composer install
@@ -41,18 +37,18 @@ cat <<'EOT' >> composer.local.json
 }
 EOT
 
-mkdir data
-chmod a+w data
+sudo /etc/init.d/mysql start
 
-#php maintenance/install.php --dbtype=mysql --dbname=mysql --dbuser=root --dbpass=root --pass=AdminPassword WikiName AdminUser
-php maintenance/install.php --dbtype=sqlite --dbuser=root --dbname=mediawiki --dbpath=/home/runner/work/mediawiki/mediawiki/srv/mediawiki/w/data --pass=AdminPassword WikiName AdminUser
+mysql -u root -proot -e "CREATE DATABASE `mediawiki`;"
+#mysql -u root -proot -e "CREATE DATABASE `mhglobal`;"
+#mysql -u root -proot -e "CREATE DATABASE `metawiki`;"
+#mysql -u root -proot -e "CREATE DATABASE `loginwiki`;"
 
-sqlite3 /home/runner/work/mediawiki/mediawiki/srv/mediawiki/w/data/mediawiki.sqlite
+php maintenance/install.php --dbtype=mysql --dbname=mediawiki --dbuser=root --dbpass=root --server=http://localhost --scriptpath=/w --pass=AdminPassword WikiName AdminUser
 
 cd ..
 
-rm config/Database.php
-mv w/LocalSettings.php config/Database.php
+mv w/LocalSettings.php config/PrivateSettings.php
 
 mv config/LocalSettings.php w/LocalSettings.php
 mv config/ManageWikiExtensions.php w/ManageWikiExtensions.php
@@ -61,14 +57,30 @@ mv config/ManageWikiSettings.php w/ManageWikiSettings.php
 
 cd config
 
-echo -n > PrivateSettings.php
-echo -n > ExtensionMessageFiles.php
+echo -n "" > Database.php
+echo -n "" > ExtensionMessageFiles.php
 
 cd ..
 
 cd w
 
 sed -i -e 's/\/srv\//\/home\/runner\/work\/mediawiki\/mediawiki\/srv\//g' LocalSettings.php
+
+sed -i -e "s/'mhglobal'/'mediawiki'/g" LocalSettings.php
+
+sed -i -e "s/'metawiki'/'mediawiki'/g" LocalSettings.php
+
+sed -i -e "s/'loginwiki'/'mediawiki'/g" LocalSettings.php
+
+sed -i -e 's/https\:\/\/miraheze\.org/http\:\/\/localhost/g' LocalSettings.php
+
+sed -i -e "s/'miraheze\.org'/'localhost'/g" LocalSettings.php
+
+sed -i -e "s/\$_SERVER\['HTTP_HOST'\] \?\? 'undefined'/'localhost'/g" extensions/CreateWiki/includes/WikiInitialise.php
+
+sed -i -e 's/https\:\/\//http\:\/\//g' extensions/CreateWiki/includes/WikiInitialise.php
+
+sed -i -e "s/\. substr\( \$db, 0, \-strlen\( \$suffix \) \) \. '\.'//g" extensions/CreateWiki/includes/WikiInitialise.php
 
 echo 'error_reporting(E_ALL| E_STRICT);' >> LocalSettings.php
 echo 'ini_set("display_errors", 1);' >> LocalSettings.php
@@ -78,14 +90,13 @@ echo '$wgDevelopmentWarnings = true;' >> LocalSettings.php
 
 tail -n5 LocalSettings.php
 
-#php maintenance/sqlite.php extensions/CreateWiki/sql/cw_comments.sql
-#php maintenance/sqlite.php extensions/CreateWiki/sql/cw_requests.sql
-#php maintenance/sqlite.php extensions/CreateWiki/sql/cw_wikis.sql
+mysql -u "root" -proot "mediawiki" -D mediawiki < "extensions/CreateWiki/sql/cw_wikis.sql"
 
-#mysql -h "localhost" -u "root" "mediawiki" < "extensions/CreateWiki/sql/cw_wikis.sql"
-cd data
-ls
-sqlite3 mediawiki.sqlite ".read /home/runner/work/mediawiki/mediawiki/srv/mediawiki/w/extensions/CreateWiki/sql/cw_wikis.sql"
-cd ..
+mysql -u "root" -proot "mediawiki" -D mediawiki -e "INSERT INTO cw_wikis SET wiki_dbname = 'mediawiki', wiki_sitename = 'WikiName', wiki_language = 'en', wiki_private = 0, wiki_creation = 20150802185000, wiki_url = 'http://localhost', wiki_closed = 0, wiki_inactive = 0, wiki_inactive_exempt = 1, wiki_deleted = 0, wiki_locked = 0, wiki_dbcluster = 'c2', wiki_category = 'uncategorised', wiki_extensions = '';"
+
+# Re-enable later after update.php works
+# php maintenance/mergeMessageFileList.php --output=/home/runner/work/mediawiki/mediawiki/srv/mediawiki/config/ExtensionMessageFiles.php --wiki=mediawiki
+
+# php maintenance/rebuildLocalisationCache.php --wiki=mediawiki
 
 php maintenance/update.php
