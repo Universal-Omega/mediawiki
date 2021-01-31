@@ -40,6 +40,8 @@ EOT
 mkdir data
 chmod a+w data
 
+sudo /etc/init.d/mysql start
+
 php maintenance/install.php --dbtype=mysql --dbname=mediawiki --dbuser=root --dbpass=root --pass=AdminPassword WikiName AdminUser
 #php maintenance/install.php --dbtype=sqlite --dbuser=root --dbname=mediawiki --dbpath=/home/runner/work/mediawiki/mediawiki/srv/mediawiki/w/data --pass=AdminPassword WikiName AdminUser
 
