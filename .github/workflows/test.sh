@@ -71,7 +71,7 @@ sed -i -e "s/'metawiki'/'mediawiki'/g" LocalSettings.php
 
 sed -i -e "s/'loginwiki'/'mediawiki'/g" LocalSettings.php
 
-sed -i -e 's/https\:\/\/miraheze\.org/http://localhost/g' LocalSettings.php
+sed -i -e 's/https\:\/\/miraheze\.org/http\:\/\/localhost/g' LocalSettings.php
 
 sed -i -e "s/'miraheze\.org'/'localhost'/g" LocalSettings.php
 
