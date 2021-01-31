@@ -65,7 +65,7 @@ sed -i -e 's/\/srv\//\/home\/runner\/work\/mediawiki\/mediawiki\/srv\//g' LocalS
 
 sed -i 's/https\:\/\/miraheze\.org/http://localhost/g' LocalSettings.php
 
-sed -i "s/'miraheze\.org'/localhost/g" LocalSettings.php
+sed -i "s/'miraheze\.org'/'localhost'/g" LocalSettings.php
 
 sed -i -e 's/https\:\/\//http\:\/\//g' extensions/CreateWiki/includes/WikiInitialise.php
 
