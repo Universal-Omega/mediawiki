@@ -32,7 +32,7 @@ jobs:
           submodules: true
           path: srv/mediawiki/w
       - name: Clone Config
-        uses: action/checkout@v2
+        uses: actions/checkout@v2
         with:
           repository: miraheze/mw-config
           path: srv/mediawiki/config
