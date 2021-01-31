@@ -63,11 +63,17 @@ cd w
 
 sed -i -e 's/\/srv\//\/home\/runner\/work\/mediawiki\/mediawiki\/srv\//g' LocalSettings.php
 
+sed -i -e "s/'mhglobal'/'mediawiki'/g" LocalSettings.php
+
+sed -i -e "s/'metawiki'/'mediawiki'/g" LocalSettings.php
+
+sed -i -e "s/'loginwiki'/'mediawiki'/g" LocalSettings.php
+
 sed -i -e 's/https\:\/\/miraheze\.org/http://localhost/g' LocalSettings.php
 
 sed -i -e "s/'miraheze\.org'/'localhost'/g" LocalSettings.php
 
-sed -i -e 's/undefined/localhost/g' extensions/CreateWiki/includes/WikiInitialise.php
+sed -i -e "s/\$_SERVER\['HTTP_HOST'\] \?\? 'undefined'/'localhost'/g" extensions/CreateWiki/includes/WikiInitialise.php
 
 sed -i -e 's/https\:\/\//http\:\/\//g' extensions/CreateWiki/includes/WikiInitialise.php
 
@@ -83,4 +89,4 @@ tail -n5 LocalSettings.php
 
 mysql -u "root" -proot "mediawiki" < "extensions/CreateWiki/sql/cw_wikis.sql"
 
-php maintenance/update.php
+php maintenance/update.php --wiki=mediawiki
