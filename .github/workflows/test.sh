@@ -6,8 +6,6 @@ cd srv/mediawiki
 
 composer self-update --1
 
-/usr/bin/git clone https://github.com/miraheze/mw-config.git config --depth=1
-
 cd w
 
 composer install
