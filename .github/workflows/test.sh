@@ -78,7 +78,7 @@ tail -n5 LocalSettings.php
 #php maintenance/sqlite.php extensions/CreateWiki/sql/cw_requests.sql
 #php maintenance/sqlite.php extensions/CreateWiki/sql/cw_wikis.sql
 
-mysql -h "localhost" -u "root" "mediawiki" < "extensions/CreateWiki/sql/cw_wikis.sql"
+mysql -h "127.0.0.1" --port 3306 -u "root" "mediawiki" < "extensions/CreateWiki/sql/cw_wikis.sql"
 cd data
 ls
 #sqlite3 mediawiki.sqlite ".read /home/runner/work/mediawiki/mediawiki/srv/mediawiki/w/extensions/CreateWiki/sql/cw_wikis.sql"
