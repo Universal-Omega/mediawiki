@@ -58,6 +58,7 @@ mv config/ManageWikiSettings.php w/ManageWikiSettings.php
 cd config
 
 echo -n "" > Database.php
+echo -n "" > ExtensionMessageFiles.php
 
 cd ..
 
