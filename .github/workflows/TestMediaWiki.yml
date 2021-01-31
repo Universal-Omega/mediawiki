@@ -28,7 +28,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          submodules: false
+          submodules: true
           path: /srv/mediawiki/w
       - name: PHP ${{ matrix.php }} 
         uses: shivammathur/setup-php@v2
